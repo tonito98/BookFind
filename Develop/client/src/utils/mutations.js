@@ -6,7 +6,6 @@ export const LOGIN_USER = gql`
             token
             user {
                 _id
-                username
             }
         }
     }
@@ -19,6 +18,16 @@ export const LOGIN_USER = gql`
                 user {
                     _id
                     username
+                    email
+                    bookCount
+                    savedBooks {
+                        authors
+                        bookId
+                        image
+                        link
+                        title
+                        description
+                    }
                 }
             }
         }
@@ -29,8 +38,10 @@ export const LOGIN_USER = gql`
             saveBook(bookId: $id){
                 _id
                 username
+                email
                 bookCount
                 savedBooks {
+                    _id
                     bookId
                     authors
                     description
@@ -46,7 +57,9 @@ export const LOGIN_USER = gql`
             removeFriend(id: $id) {
                 _id
                 username
+                email
                 savedBooks {
+                    _id
                     bookId
                     authors
                     description

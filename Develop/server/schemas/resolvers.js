@@ -15,15 +15,10 @@ const resolvers = {
 
             throw new AuthenticationError('Not logged in');
         },
-        user: async (parent, { username }) => {
-            return User.findOne({ username })
-            .select('-__v -password')
-            .populate('savedBooks');
-        }
     },
 
     Mutation: {
-        createUser: async (parent, args) => {
+        addUser: async (parent, args) => {
             const user = await User.create(args);
             const token = signToken(user);
 
@@ -58,7 +53,7 @@ const resolvers = {
               return res.status(400).json(err);
             }
           },
-        deleteBook: async ({ user, params }, res) => {
+        removeBook: async ({ user, params }, res) => {
             const updatedUser = await User.findOneAndUpdate(
               { _id: user._id },
               { $pull: { savedBooks: { bookId: params.bookId } } },

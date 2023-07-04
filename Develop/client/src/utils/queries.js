@@ -8,10 +8,12 @@ export const GET_ME = gql`
         bookCount
         savedBooks {
             id
+            bookId
             authors
-            description
             image
             link
+            title
+            description
         }
     }
 }`;
