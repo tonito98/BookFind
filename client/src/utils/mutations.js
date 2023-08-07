@@ -54,13 +54,13 @@ export const LOGIN_USER = gql`
         `;
         
         export const REMOVE_BOOK = gql`
-          mutation removeBook($id: ID!) {
-            removeFriend(id: $id) {
+          mutation removeBook($bookId: ID!) {
+            removeBook(bookId: $bookId) {
                 _id
                 username
                 email
+                bookCount
                 savedBooks {
-                    _id
                     bookId
                     authors
                     description
